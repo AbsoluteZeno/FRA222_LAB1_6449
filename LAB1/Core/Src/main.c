@@ -63,6 +63,8 @@ PortPin R[4] =
 		{GPIOB, GPIO_PIN_5},
 		{GPIOB, GPIO_PIN_4}
 };
+
+uint16_t ButtonMatrix = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -70,7 +72,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
-
+void ReadMatrixButton_1Row();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -118,6 +120,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  uint32_t timestamp = 0;
+	  if (HAL_GetTick() > timestamp)
+	  {
+		  timestamp = HAL_GetTick() + 10;
+		  ReadMatrixButton_1Row();
+	  }
   }
   /* USER CODE END 3 */
 }
@@ -266,7 +274,33 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void ReadMatrixButton_1Row()
+{
+	static uint8_t X = 0;
+	register int i;
 
+	// Read L1-L4
+	for (i = 0; i < 4; i++)
+	{
+		if (HAL_GPIO_ReadPin(L[i].PORT, L[i].PIN))
+		{
+			ButtonMatrix &= ~(1 << (4*X + i));	// Set MatrixButton on bit 4*X + i to 0
+		}
+		else
+		{
+			ButtonMatrix |= 1 << (4*X + i);		// Set MatrixButton on bit 4*X + i to 1
+		}
+	}
+
+	// Set RX
+	HAL_GPIO_WritePin(R[X].PORT, R[X].PIN, 1);
+
+	// Reset R[(X + 1)%4]
+	HAL_GPIO_WritePin(R[(X + 1)%4].PORT, R[(X + 1)%4].PIN, 0);
+
+	// Update X
+	X = (X + 1)%4;
+}
 /* USER CODE END 4 */
 
 /**
