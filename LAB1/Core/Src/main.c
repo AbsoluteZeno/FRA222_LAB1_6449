@@ -42,7 +42,27 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+typedef struct PortPin
+{
+	GPIO_TypeDef* PORT;
+	uint16_t PIN;
+} PortPin;
 
+PortPin L[4] =
+{
+		{GPIOA, GPIO_PIN_9},
+		{GPIOC, GPIO_PIN_7},
+		{GPIOB, GPIO_PIN_6},
+		{GPIOA, GPIO_PIN_7}
+};
+
+PortPin R[4] =
+{
+		{GPIOA, GPIO_PIN_10},
+		{GPIOB, GPIO_PIN_3},
+		{GPIOB, GPIO_PIN_5},
+		{GPIOB, GPIO_PIN_4}
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
