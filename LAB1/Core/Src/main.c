@@ -65,6 +65,8 @@ PortPin R[4] =
 };
 
 uint16_t ButtonMatrix = 0;
+uint16_t ButtonMatrix_Last = 0;
+uint64_t Memory = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -73,6 +75,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 void ReadMatrixButton_1Row();
+void ButtonBehaviour(int i);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -121,10 +124,30 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  uint32_t timestamp = 0;
+	  static uint8_t T = 0;
+	  register int i;
+
 	  if (HAL_GetTick() > timestamp)
 	  {
 		  timestamp = HAL_GetTick() + 10;
 		  ReadMatrixButton_1Row();
+
+		  // Get rid off the meaningless buttons
+		  ButtonMatrix &= 0b1011011101111111;
+
+		  T = (T + 1)%4;
+	  }
+
+	  if (T == 0)
+	  {
+		  for (i = 0; i < 16; i++)
+		  {
+			  if ((((ButtonMatrix >> i) & 1) == 1) && (((ButtonMatrix_Last >> i) & 1) == 0))
+			  {
+				  ButtonBehaviour(i);
+			  }
+		  }
+		  ButtonMatrix_Last = ButtonMatrix;
 	  }
   }
   /* USER CODE END 3 */
@@ -300,6 +323,70 @@ void ReadMatrixButton_1Row()
 
 	// Update X
 	X = (X + 1)%4;
+}
+
+void ButtonBehaviour(int i)
+{
+	switch (i)
+	{
+	case 0:
+	  Memory *= 10;
+	  Memory += 7;
+	  break;
+	case 1:
+	  Memory *= 10;
+	  Memory += 4;
+	  break;
+	case 2:
+	  Memory *= 10;
+	  Memory += 1;
+	  break;
+	case 3:
+	  Memory *= 10;
+	  break;
+	case 4:
+	  Memory *= 10;
+	  Memory += 8;
+	  break;
+	case 5:
+	  Memory *= 10;
+	  Memory += 5;
+	  break;
+	case 6:
+	  Memory *= 10;
+	  Memory += 2;
+	  break;
+	case 8:
+	  Memory *= 10;
+	  Memory += 9;
+	  break;
+	case 9:
+	  Memory *= 10;
+	  Memory += 6;
+	  break;
+	case 10:
+	  Memory *= 10;
+	  Memory += 3;
+	  break;
+	case 12:
+	  Memory = 0;
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
+	  break;
+	case 13:
+	  Memory /= 10;
+	  break;
+	case 15:
+	  if (Memory == 64340500049)
+	  {
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
+	  }
+	  else
+	  {
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
+	  }
+	  Memory = 0;
+	  break;
+	}
 }
 /* USER CODE END 4 */
 
