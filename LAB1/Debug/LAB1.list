@@ -39,9 +39,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_line   0000762d  00000000  00000000  0003decd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00081932  00000000  00000000  000454fa  2**0
+ 18 .debug_str    00081931  00000000  00000000  000454fa  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  000c6e2c  2**0
+ 19 .comment      00000050  00000000  00000000  000c6e2b  2**0
                   CONTENTS, READONLY
  20 .debug_frame  000017fc  00000000  00000000  000c6e7c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -456,9 +456,9 @@ int main(void)
  800055c:	2b00      	cmp	r3, #0
  800055e:	d102      	bne.n	8000566 <main+0x8a>
 			  {
-				  ButtonBehaviour(i);
+				  ButtonBehavior(i);
  8000560:	4620      	mov	r0, r4
- 8000562:	f000 f9d1 	bl	8000908 <ButtonBehaviour>
+ 8000562:	f000 f9d1 	bl	8000908 <ButtonBehavior>
 		  for (i = 0; i < 16; i++)
  8000566:	3401      	adds	r4, #1
  8000568:	2c0f      	cmp	r4, #15
@@ -1027,9 +1027,9 @@ void ReadMatrixButton_1Row()
  8000900:	200000b0 	.word	0x200000b0
  8000904:	20000020 	.word	0x20000020
 
-08000908 <ButtonBehaviour>:
+08000908 <ButtonBehavior>:
 
-void ButtonBehaviour(int i)
+void ButtonBehavior(int i)
 {
  8000908:	e92d 4fb0 	stmdb	sp!, {r4, r5, r7, r8, r9, sl, fp, lr}
  800090c:	b0b8      	sub	sp, #224	; 0xe0
@@ -1038,8 +1038,8 @@ void ButtonBehaviour(int i)
 	switch (i)
  8000914:	f8d7 30dc 	ldr.w	r3, [r7, #220]	; 0xdc
  8000918:	2b0f      	cmp	r3, #15
- 800091a:	f200 824c 	bhi.w	8000db6 <ButtonBehaviour+0x4ae>
- 800091e:	a201      	add	r2, pc, #4	; (adr r2, 8000924 <ButtonBehaviour+0x1c>)
+ 800091a:	f200 824c 	bhi.w	8000db6 <ButtonBehavior+0x4ae>
+ 800091e:	a201      	add	r2, pc, #4	; (adr r2, 8000924 <ButtonBehavior+0x1c>)
  8000920:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
  8000924:	08000965 	.word	0x08000965
  8000928:	080009d3 	.word	0x080009d3
@@ -1060,7 +1060,7 @@ void ButtonBehaviour(int i)
 	{
 	case 0:
 	  Memory *= 10;
- 8000964:	4bc7      	ldr	r3, [pc, #796]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000964:	4bc7      	ldr	r3, [pc, #796]	; (8000c84 <ButtonBehavior+0x37c>)
  8000966:	e9d3 4500 	ldrd	r4, r5, [r3]
  800096a:	4622      	mov	r2, r4
  800096c:	462b      	mov	r3, r5
@@ -1085,23 +1085,23 @@ void ButtonBehaviour(int i)
  80009a4:	e9d7 3420 	ldrd	r3, r4, [r7, #128]	; 0x80
  80009a8:	461a      	mov	r2, r3
  80009aa:	4623      	mov	r3, r4
- 80009ac:	49b5      	ldr	r1, [pc, #724]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 80009ac:	49b5      	ldr	r1, [pc, #724]	; (8000c84 <ButtonBehavior+0x37c>)
  80009ae:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 7;
- 80009b2:	4bb4      	ldr	r3, [pc, #720]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 80009b2:	4bb4      	ldr	r3, [pc, #720]	; (8000c84 <ButtonBehavior+0x37c>)
  80009b4:	e9d3 2300 	ldrd	r2, r3, [r3]
  80009b8:	1dd1      	adds	r1, r2, #7
  80009ba:	f8c7 10d0 	str.w	r1, [r7, #208]	; 0xd0
  80009be:	f143 0300 	adc.w	r3, r3, #0
  80009c2:	f8c7 30d4 	str.w	r3, [r7, #212]	; 0xd4
- 80009c6:	4baf      	ldr	r3, [pc, #700]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 80009c6:	4baf      	ldr	r3, [pc, #700]	; (8000c84 <ButtonBehavior+0x37c>)
  80009c8:	e9d7 1234 	ldrd	r1, r2, [r7, #208]	; 0xd0
  80009cc:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 80009d0:	e1f1      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 80009d0:	e1f1      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 1:
 	  Memory *= 10;
- 80009d2:	4bac      	ldr	r3, [pc, #688]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 80009d2:	4bac      	ldr	r3, [pc, #688]	; (8000c84 <ButtonBehavior+0x37c>)
  80009d4:	e9d3 4500 	ldrd	r4, r5, [r3]
  80009d8:	4622      	mov	r2, r4
  80009da:	462b      	mov	r3, r5
@@ -1126,23 +1126,23 @@ void ButtonBehaviour(int i)
  8000a0a:	e9d7 341c 	ldrd	r3, r4, [r7, #112]	; 0x70
  8000a0e:	461a      	mov	r2, r3
  8000a10:	4623      	mov	r3, r4
- 8000a12:	499c      	ldr	r1, [pc, #624]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000a12:	499c      	ldr	r1, [pc, #624]	; (8000c84 <ButtonBehavior+0x37c>)
  8000a14:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 4;
- 8000a18:	4b9a      	ldr	r3, [pc, #616]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000a18:	4b9a      	ldr	r3, [pc, #616]	; (8000c84 <ButtonBehavior+0x37c>)
  8000a1a:	e9d3 2300 	ldrd	r2, r3, [r3]
  8000a1e:	1d11      	adds	r1, r2, #4
  8000a20:	f8c7 10c8 	str.w	r1, [r7, #200]	; 0xc8
  8000a24:	f143 0300 	adc.w	r3, r3, #0
  8000a28:	f8c7 30cc 	str.w	r3, [r7, #204]	; 0xcc
- 8000a2c:	4b95      	ldr	r3, [pc, #596]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000a2c:	4b95      	ldr	r3, [pc, #596]	; (8000c84 <ButtonBehavior+0x37c>)
  8000a2e:	e9d7 1232 	ldrd	r1, r2, [r7, #200]	; 0xc8
  8000a32:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 8000a36:	e1be      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000a36:	e1be      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 2:
 	  Memory *= 10;
- 8000a38:	4b92      	ldr	r3, [pc, #584]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000a38:	4b92      	ldr	r3, [pc, #584]	; (8000c84 <ButtonBehavior+0x37c>)
  8000a3a:	e9d3 4500 	ldrd	r4, r5, [r3]
  8000a3e:	4622      	mov	r2, r4
  8000a40:	462b      	mov	r3, r5
@@ -1167,23 +1167,23 @@ void ButtonBehaviour(int i)
  8000a70:	e9d7 3418 	ldrd	r3, r4, [r7, #96]	; 0x60
  8000a74:	461a      	mov	r2, r3
  8000a76:	4623      	mov	r3, r4
- 8000a78:	4982      	ldr	r1, [pc, #520]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000a78:	4982      	ldr	r1, [pc, #520]	; (8000c84 <ButtonBehavior+0x37c>)
  8000a7a:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 1;
- 8000a7e:	4b81      	ldr	r3, [pc, #516]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000a7e:	4b81      	ldr	r3, [pc, #516]	; (8000c84 <ButtonBehavior+0x37c>)
  8000a80:	e9d3 2300 	ldrd	r2, r3, [r3]
  8000a84:	1c51      	adds	r1, r2, #1
  8000a86:	f8c7 10c0 	str.w	r1, [r7, #192]	; 0xc0
  8000a8a:	f143 0300 	adc.w	r3, r3, #0
  8000a8e:	f8c7 30c4 	str.w	r3, [r7, #196]	; 0xc4
- 8000a92:	4b7c      	ldr	r3, [pc, #496]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000a92:	4b7c      	ldr	r3, [pc, #496]	; (8000c84 <ButtonBehavior+0x37c>)
  8000a94:	e9d7 1230 	ldrd	r1, r2, [r7, #192]	; 0xc0
  8000a98:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 8000a9c:	e18b      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000a9c:	e18b      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 3:
 	  Memory *= 10;
- 8000a9e:	4b79      	ldr	r3, [pc, #484]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000a9e:	4b79      	ldr	r3, [pc, #484]	; (8000c84 <ButtonBehavior+0x37c>)
  8000aa0:	e9d3 4500 	ldrd	r4, r5, [r3]
  8000aa4:	4622      	mov	r2, r4
  8000aa6:	462b      	mov	r3, r5
@@ -1208,13 +1208,13 @@ void ButtonBehaviour(int i)
  8000ad6:	e9d7 3414 	ldrd	r3, r4, [r7, #80]	; 0x50
  8000ada:	461a      	mov	r2, r3
  8000adc:	4623      	mov	r3, r4
- 8000ade:	4969      	ldr	r1, [pc, #420]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000ade:	4969      	ldr	r1, [pc, #420]	; (8000c84 <ButtonBehavior+0x37c>)
  8000ae0:	e9c1 2300 	strd	r2, r3, [r1]
 	  break;
- 8000ae4:	e167      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000ae4:	e167      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 4:
 	  Memory *= 10;
- 8000ae6:	4b67      	ldr	r3, [pc, #412]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000ae6:	4b67      	ldr	r3, [pc, #412]	; (8000c84 <ButtonBehavior+0x37c>)
  8000ae8:	e9d3 4500 	ldrd	r4, r5, [r3]
  8000aec:	4622      	mov	r2, r4
  8000aee:	462b      	mov	r3, r5
@@ -1239,23 +1239,23 @@ void ButtonBehaviour(int i)
  8000b1e:	e9d7 3410 	ldrd	r3, r4, [r7, #64]	; 0x40
  8000b22:	461a      	mov	r2, r3
  8000b24:	4623      	mov	r3, r4
- 8000b26:	4957      	ldr	r1, [pc, #348]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000b26:	4957      	ldr	r1, [pc, #348]	; (8000c84 <ButtonBehavior+0x37c>)
  8000b28:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 8;
- 8000b2c:	4b55      	ldr	r3, [pc, #340]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000b2c:	4b55      	ldr	r3, [pc, #340]	; (8000c84 <ButtonBehavior+0x37c>)
  8000b2e:	e9d3 2300 	ldrd	r2, r3, [r3]
  8000b32:	f112 0108 	adds.w	r1, r2, #8
  8000b36:	f8c7 10b8 	str.w	r1, [r7, #184]	; 0xb8
  8000b3a:	f143 0300 	adc.w	r3, r3, #0
  8000b3e:	f8c7 30bc 	str.w	r3, [r7, #188]	; 0xbc
- 8000b42:	4b50      	ldr	r3, [pc, #320]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000b42:	4b50      	ldr	r3, [pc, #320]	; (8000c84 <ButtonBehavior+0x37c>)
  8000b44:	e9d7 122e 	ldrd	r1, r2, [r7, #184]	; 0xb8
  8000b48:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 8000b4c:	e133      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000b4c:	e133      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 5:
 	  Memory *= 10;
- 8000b4e:	4b4d      	ldr	r3, [pc, #308]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000b4e:	4b4d      	ldr	r3, [pc, #308]	; (8000c84 <ButtonBehavior+0x37c>)
  8000b50:	e9d3 4500 	ldrd	r4, r5, [r3]
  8000b54:	4622      	mov	r2, r4
  8000b56:	462b      	mov	r3, r5
@@ -1280,23 +1280,23 @@ void ButtonBehaviour(int i)
  8000b86:	e9d7 340c 	ldrd	r3, r4, [r7, #48]	; 0x30
  8000b8a:	461a      	mov	r2, r3
  8000b8c:	4623      	mov	r3, r4
- 8000b8e:	493d      	ldr	r1, [pc, #244]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000b8e:	493d      	ldr	r1, [pc, #244]	; (8000c84 <ButtonBehavior+0x37c>)
  8000b90:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 5;
- 8000b94:	4b3b      	ldr	r3, [pc, #236]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000b94:	4b3b      	ldr	r3, [pc, #236]	; (8000c84 <ButtonBehavior+0x37c>)
  8000b96:	e9d3 2300 	ldrd	r2, r3, [r3]
  8000b9a:	1d51      	adds	r1, r2, #5
  8000b9c:	f8c7 10b0 	str.w	r1, [r7, #176]	; 0xb0
  8000ba0:	f143 0300 	adc.w	r3, r3, #0
  8000ba4:	f8c7 30b4 	str.w	r3, [r7, #180]	; 0xb4
- 8000ba8:	4b36      	ldr	r3, [pc, #216]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000ba8:	4b36      	ldr	r3, [pc, #216]	; (8000c84 <ButtonBehavior+0x37c>)
  8000baa:	e9d7 122c 	ldrd	r1, r2, [r7, #176]	; 0xb0
  8000bae:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 8000bb2:	e100      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000bb2:	e100      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 6:
 	  Memory *= 10;
- 8000bb4:	4b33      	ldr	r3, [pc, #204]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000bb4:	4b33      	ldr	r3, [pc, #204]	; (8000c84 <ButtonBehavior+0x37c>)
  8000bb6:	e9d3 4500 	ldrd	r4, r5, [r3]
  8000bba:	4622      	mov	r2, r4
  8000bbc:	462b      	mov	r3, r5
@@ -1321,23 +1321,23 @@ void ButtonBehaviour(int i)
  8000bec:	e9d7 3408 	ldrd	r3, r4, [r7, #32]
  8000bf0:	461a      	mov	r2, r3
  8000bf2:	4623      	mov	r3, r4
- 8000bf4:	4923      	ldr	r1, [pc, #140]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000bf4:	4923      	ldr	r1, [pc, #140]	; (8000c84 <ButtonBehavior+0x37c>)
  8000bf6:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 2;
- 8000bfa:	4b22      	ldr	r3, [pc, #136]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000bfa:	4b22      	ldr	r3, [pc, #136]	; (8000c84 <ButtonBehavior+0x37c>)
  8000bfc:	e9d3 2300 	ldrd	r2, r3, [r3]
  8000c00:	1c91      	adds	r1, r2, #2
  8000c02:	f8c7 10a8 	str.w	r1, [r7, #168]	; 0xa8
  8000c06:	f143 0300 	adc.w	r3, r3, #0
  8000c0a:	f8c7 30ac 	str.w	r3, [r7, #172]	; 0xac
- 8000c0e:	4b1d      	ldr	r3, [pc, #116]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000c0e:	4b1d      	ldr	r3, [pc, #116]	; (8000c84 <ButtonBehavior+0x37c>)
  8000c10:	e9d7 122a 	ldrd	r1, r2, [r7, #168]	; 0xa8
  8000c14:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 8000c18:	e0cd      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000c18:	e0cd      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 8:
 	  Memory *= 10;
- 8000c1a:	4b1a      	ldr	r3, [pc, #104]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000c1a:	4b1a      	ldr	r3, [pc, #104]	; (8000c84 <ButtonBehavior+0x37c>)
  8000c1c:	e9d3 4500 	ldrd	r4, r5, [r3]
  8000c20:	4622      	mov	r2, r4
  8000c22:	462b      	mov	r3, r5
@@ -1362,25 +1362,25 @@ void ButtonBehaviour(int i)
  8000c52:	e9d7 3404 	ldrd	r3, r4, [r7, #16]
  8000c56:	461a      	mov	r2, r3
  8000c58:	4623      	mov	r3, r4
- 8000c5a:	490a      	ldr	r1, [pc, #40]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000c5a:	490a      	ldr	r1, [pc, #40]	; (8000c84 <ButtonBehavior+0x37c>)
  8000c5c:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 9;
- 8000c60:	4b08      	ldr	r3, [pc, #32]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000c60:	4b08      	ldr	r3, [pc, #32]	; (8000c84 <ButtonBehavior+0x37c>)
  8000c62:	e9d3 2300 	ldrd	r2, r3, [r3]
  8000c66:	f112 0109 	adds.w	r1, r2, #9
  8000c6a:	f8c7 10a0 	str.w	r1, [r7, #160]	; 0xa0
  8000c6e:	f143 0300 	adc.w	r3, r3, #0
  8000c72:	f8c7 30a4 	str.w	r3, [r7, #164]	; 0xa4
- 8000c76:	4b03      	ldr	r3, [pc, #12]	; (8000c84 <ButtonBehaviour+0x37c>)
+ 8000c76:	4b03      	ldr	r3, [pc, #12]	; (8000c84 <ButtonBehavior+0x37c>)
  8000c78:	e9d7 1228 	ldrd	r1, r2, [r7, #160]	; 0xa0
  8000c7c:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 8000c80:	e099      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000c80:	e099      	b.n	8000db6 <ButtonBehavior+0x4ae>
  8000c82:	bf00      	nop
  8000c84:	200000b8 	.word	0x200000b8
 	case 9:
 	  Memory *= 10;
- 8000c88:	4b4d      	ldr	r3, [pc, #308]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000c88:	4b4d      	ldr	r3, [pc, #308]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000c8a:	e9d3 4500 	ldrd	r4, r5, [r3]
  8000c8e:	4622      	mov	r2, r4
  8000c90:	462b      	mov	r3, r5
@@ -1400,23 +1400,23 @@ void ButtonBehaviour(int i)
  8000cba:	e9d7 ab02 	ldrd	sl, fp, [r7, #8]
  8000cbe:	4652      	mov	r2, sl
  8000cc0:	465b      	mov	r3, fp
- 8000cc2:	493f      	ldr	r1, [pc, #252]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000cc2:	493f      	ldr	r1, [pc, #252]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000cc4:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 6;
- 8000cc8:	4b3d      	ldr	r3, [pc, #244]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000cc8:	4b3d      	ldr	r3, [pc, #244]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000cca:	e9d3 2300 	ldrd	r2, r3, [r3]
  8000cce:	1d91      	adds	r1, r2, #6
  8000cd0:	f8c7 1098 	str.w	r1, [r7, #152]	; 0x98
  8000cd4:	f143 0300 	adc.w	r3, r3, #0
  8000cd8:	f8c7 309c 	str.w	r3, [r7, #156]	; 0x9c
- 8000cdc:	4b38      	ldr	r3, [pc, #224]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000cdc:	4b38      	ldr	r3, [pc, #224]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000cde:	e9d7 1226 	ldrd	r1, r2, [r7, #152]	; 0x98
  8000ce2:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 8000ce6:	e066      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000ce6:	e066      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 10:
 	  Memory *= 10;
- 8000ce8:	4b35      	ldr	r3, [pc, #212]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000ce8:	4b35      	ldr	r3, [pc, #212]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000cea:	e9d3 4500 	ldrd	r4, r5, [r3]
  8000cee:	4622      	mov	r2, r4
  8000cf0:	462b      	mov	r3, r5
@@ -1436,73 +1436,73 @@ void ButtonBehaviour(int i)
  8000d1a:	e9d7 8900 	ldrd	r8, r9, [r7]
  8000d1e:	4642      	mov	r2, r8
  8000d20:	464b      	mov	r3, r9
- 8000d22:	4927      	ldr	r1, [pc, #156]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000d22:	4927      	ldr	r1, [pc, #156]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000d24:	e9c1 2300 	strd	r2, r3, [r1]
 	  Memory += 3;
- 8000d28:	4b25      	ldr	r3, [pc, #148]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000d28:	4b25      	ldr	r3, [pc, #148]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000d2a:	e9d3 2300 	ldrd	r2, r3, [r3]
  8000d2e:	1cd1      	adds	r1, r2, #3
  8000d30:	f8c7 1090 	str.w	r1, [r7, #144]	; 0x90
  8000d34:	f143 0300 	adc.w	r3, r3, #0
  8000d38:	f8c7 3094 	str.w	r3, [r7, #148]	; 0x94
- 8000d3c:	4b20      	ldr	r3, [pc, #128]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000d3c:	4b20      	ldr	r3, [pc, #128]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000d3e:	e9d7 1224 	ldrd	r1, r2, [r7, #144]	; 0x90
  8000d42:	e9c3 1200 	strd	r1, r2, [r3]
 	  break;
- 8000d46:	e036      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000d46:	e036      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 12:
 	  Memory = 0;
- 8000d48:	491d      	ldr	r1, [pc, #116]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000d48:	491d      	ldr	r1, [pc, #116]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000d4a:	f04f 0200 	mov.w	r2, #0
  8000d4e:	f04f 0300 	mov.w	r3, #0
  8000d52:	e9c1 2300 	strd	r2, r3, [r1]
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
  8000d56:	2200      	movs	r2, #0
  8000d58:	2120      	movs	r1, #32
- 8000d5a:	481a      	ldr	r0, [pc, #104]	; (8000dc4 <ButtonBehaviour+0x4bc>)
+ 8000d5a:	481a      	ldr	r0, [pc, #104]	; (8000dc4 <ButtonBehavior+0x4bc>)
  8000d5c:	f000 fc06 	bl	800156c <HAL_GPIO_WritePin>
 	  break;
- 8000d60:	e029      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000d60:	e029      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 13:
 	  Memory /= 10;
- 8000d62:	4b17      	ldr	r3, [pc, #92]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000d62:	4b17      	ldr	r3, [pc, #92]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000d64:	e9d3 0100 	ldrd	r0, r1, [r3]
  8000d68:	f04f 020a 	mov.w	r2, #10
  8000d6c:	f04f 0300 	mov.w	r3, #0
  8000d70:	f7ff fa32 	bl	80001d8 <__aeabi_uldivmod>
  8000d74:	4602      	mov	r2, r0
  8000d76:	460b      	mov	r3, r1
- 8000d78:	4911      	ldr	r1, [pc, #68]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000d78:	4911      	ldr	r1, [pc, #68]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000d7a:	e9c1 2300 	strd	r2, r3, [r1]
 	  break;
- 8000d7e:	e01a      	b.n	8000db6 <ButtonBehaviour+0x4ae>
+ 8000d7e:	e01a      	b.n	8000db6 <ButtonBehavior+0x4ae>
 	case 15:
 	  if (Memory == 64340500049)
- 8000d80:	4b0f      	ldr	r3, [pc, #60]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000d80:	4b0f      	ldr	r3, [pc, #60]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000d82:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8000d86:	4910      	ldr	r1, [pc, #64]	; (8000dc8 <ButtonBehaviour+0x4c0>)
+ 8000d86:	4910      	ldr	r1, [pc, #64]	; (8000dc8 <ButtonBehavior+0x4c0>)
  8000d88:	2b0e      	cmp	r3, #14
  8000d8a:	bf08      	it	eq
  8000d8c:	428a      	cmpeq	r2, r1
- 8000d8e:	d105      	bne.n	8000d9c <ButtonBehaviour+0x494>
+ 8000d8e:	d105      	bne.n	8000d9c <ButtonBehavior+0x494>
 	  {
 		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
  8000d90:	2201      	movs	r2, #1
  8000d92:	2120      	movs	r1, #32
- 8000d94:	480b      	ldr	r0, [pc, #44]	; (8000dc4 <ButtonBehaviour+0x4bc>)
+ 8000d94:	480b      	ldr	r0, [pc, #44]	; (8000dc4 <ButtonBehavior+0x4bc>)
  8000d96:	f000 fbe9 	bl	800156c <HAL_GPIO_WritePin>
- 8000d9a:	e004      	b.n	8000da6 <ButtonBehaviour+0x49e>
+ 8000d9a:	e004      	b.n	8000da6 <ButtonBehavior+0x49e>
 	  }
 	  else
 	  {
 		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
  8000d9c:	2200      	movs	r2, #0
  8000d9e:	2120      	movs	r1, #32
- 8000da0:	4808      	ldr	r0, [pc, #32]	; (8000dc4 <ButtonBehaviour+0x4bc>)
+ 8000da0:	4808      	ldr	r0, [pc, #32]	; (8000dc4 <ButtonBehavior+0x4bc>)
  8000da2:	f000 fbe3 	bl	800156c <HAL_GPIO_WritePin>
 	  }
 	  Memory = 0;
- 8000da6:	4906      	ldr	r1, [pc, #24]	; (8000dc0 <ButtonBehaviour+0x4b8>)
+ 8000da6:	4906      	ldr	r1, [pc, #24]	; (8000dc0 <ButtonBehavior+0x4b8>)
  8000da8:	f04f 0200 	mov.w	r2, #0
  8000dac:	f04f 0300 	mov.w	r3, #0
  8000db0:	e9c1 2300 	strd	r2, r3, [r1]

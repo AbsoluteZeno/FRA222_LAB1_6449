@@ -75,7 +75,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 void ReadMatrixButton_1Row();
-void ButtonBehaviour(int i);
+void ButtonBehavior(int i);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -144,7 +144,7 @@ int main(void)
 		  {
 			  if ((((ButtonMatrix >> i) & 1) == 1) && (((ButtonMatrix_Last >> i) & 1) == 0))
 			  {
-				  ButtonBehaviour(i);
+				  ButtonBehavior(i);
 			  }
 		  }
 		  ButtonMatrix_Last = ButtonMatrix;
@@ -325,7 +325,7 @@ void ReadMatrixButton_1Row()
 	X = (X + 1)%4;
 }
 
-void ButtonBehaviour(int i)
+void ButtonBehavior(int i)
 {
 	switch (i)
 	{
